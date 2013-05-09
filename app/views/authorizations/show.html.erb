@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Provider:</b>
+  <%= @authorization.provider %>
+</p>
+
+<p>
+  <b>Uid:</b>
+  <%= @authorization.uid %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @authorization.user_id %>
+</p>
+
+<p>
+  <b>Refresh token:</b>
+  <%= @authorization.refresh_token %>
+</p>
+
+<p>
+  <b>Access token:</b>
+  <%= @authorization.access_token %>
+</p>
+
+<p>
+  <b>Oauth token secret:</b>
+  <%= @authorization.oauth_token_secret %>
+</p>
+
+
+<%= link_to 'Edit', edit_authorization_path(@authorization) %> |
+<%= link_to 'Back', authorizations_path %>

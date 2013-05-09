@@ -1,0 +1,41 @@
+<%= form_for(@authorization) do |f| %>
+  <% if @authorization.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@authorization.errors.count, "error") %> prohibited this authorization from being saved:</h2>
+
+      <ul>
+      <% @authorization.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :provider %><br />
+    <%= f.text_field :provider %>
+  </div>
+  <div class="field">
+    <%= f.label :uid %><br />
+    <%= f.text_field :uid %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :refresh_token %><br />
+    <%= f.text_field :refresh_token %>
+  </div>
+  <div class="field">
+    <%= f.label :access_token %><br />
+    <%= f.text_field :access_token %>
+  </div>
+  <div class="field">
+    <%= f.label :oauth_token_secret %><br />
+    <%= f.text_field :oauth_token_secret %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

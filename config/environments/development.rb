@@ -34,4 +34,8 @@ Birds::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  TWITTER_KEY = ENV["TWITTER_DEVELOPMENT_KEY"]
+  TWITTER_SECRET = ENV["TWITTER_DEVELOPMENT_SECRET"]
+
 end

@@ -1,0 +1,5 @@
+<% if current_user %>
+  <span class="label label-success">Twitter Connected</span>
+<% else %>
+  <span class="label"><%= link_to "Connect to Twitter", "/auth/twitter" %></span>
+<% end %>
