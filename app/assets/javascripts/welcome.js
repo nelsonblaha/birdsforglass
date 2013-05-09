@@ -7,7 +7,7 @@ $(document).ready(function(){
     $.get("http://ebird.org/ws1.1/data/obs/geo/recent?lng="+position.coords.longitude+"&lat="+position.coords.latitude+"&fmt=json&dist=3&back=14&includeProvisional=true", function(data) {
       $.each(data, function(index, bird){
           $.get("image?comName="+encodeURIComponent(bird.comName),function(data2){
-            $('div#birds').append("<p><img src='"+data2.url+"'/>"+bird.comName+"</p>");
+            $('div#birds').append("<p><img src='"+data2.url+"'/></br>"+bird.comName+"</p>");
           });
       });
     });
