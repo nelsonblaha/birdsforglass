@@ -1,4 +1,7 @@
 Birds::Application.routes.draw do
+  resources :birds
+
+
   # scaffold resources
     resources :authorizations
     resources :users
@@ -6,6 +9,8 @@ Birds::Application.routes.draw do
   get "welcome/index"
 
   root :to => 'welcome#index'
+
+  match '/image', :to => 'birds#image'
 
   #omniauth
     get   '/login', :to => 'sessions#new', :as => :login

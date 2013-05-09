@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Com name:</b>
+  <%= @bird.com_name %>
+</p>
+
+<p>
+  <b>Image url:</b>
+  <%= @bird.image_url %>
+</p>
+
+
+<%= link_to 'Edit', edit_bird_path(@bird) %> |
+<%= link_to 'Back', birds_path %>
