@@ -8,9 +8,7 @@ $(document).ready(function(){
       $('div#birds').html("");
       console.log("cleared");
       $.each(data, function(index, bird){
-          $.get("image?comName="+encodeURIComponent(bird.comName),function(data2){
-            $('div#birds').append("<p><img src='"+data2.url+"'/></br>"+bird.comName+"</p>");
-          });
+        $('div#birds').append("<p>"+bird.comName+"</p>");
       });
     });
   }
