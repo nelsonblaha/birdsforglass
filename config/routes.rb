@@ -11,6 +11,7 @@ Birds::Application.routes.draw do
   root :to => 'welcome#index'
 
   match '/image', :to => 'birds#image'
+  post "/new_location" => "user#new_location"
 
   #omniauth
     get   '/login', :to => 'sessions#new', :as => :login
