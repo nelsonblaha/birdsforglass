@@ -1,7 +1,6 @@
 class Authorization < ActiveRecord::Base
   attr_accessible :access_token, :oauth_token_secret, :provider, :refresh_token, :uid, :user_id
   belongs_to :user
-  after_create :subscribe_to_location_updates
 
   def self.find_or_create(auth_hash)
     auth = Authorization.where(provider:auth_hash["provider"],uid:auth_hash["uid"]).first
@@ -16,9 +15,41 @@ class Authorization < ActiveRecord::Base
       auth
   end
 
-  def subscribe_to_location_updates
+  def refresh_access_token(uri,client_id,client_secret)
+    if self.refresh_token
+     begin
+      response = HTTParty.post(uri, :body => {refresh_token: self.refresh_token, client_id: client_id, client_secret: client_secret, grant_type:'refresh_token'})
+                    self.access_token = response['access_token']
+                    self.save
+                    return true
+    rescue
+    end
+   end
+   return false
+  end
+
+  def location
     require "mirror-api"
     api = Mirror::Api::Client.new(self.access_token)
-    subscription = api.subscriptions.insert({collection: "location", userToken:self.user.id.to_s, operation: ["UPDATE"], callbackUrl: "https://birds-glass.herokuapp.com/new_location"})
+    if location = api.locations.list.items.first
+      return [location.latitude,location.longitude,location.accuracy]
+    end
+  end
+
+  def update_cards
+    location = self.location
+    birds = self.user.birds_nearby(location[0],location[1])
+    require "mirror-api"
+    api = Mirror::Api::Client.new(self.access_token)
+
+    # delete all cards
+    api.timeline.list.items.each do |card|
+      api.timeline.delete(card.id)
+    end    
+
+    # add new bird cards
+    birds.each do |bird|
+      api.timeline.insert({text:bird['comName'],bundleId:"birds"})
+    end
   end
 end 

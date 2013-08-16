@@ -1,4 +1,7 @@
 Birds::Application.routes.draw do
+  resources :cards
+
+
   resources :birds
 
 

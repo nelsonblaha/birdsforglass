@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.11'
 gem 'figaro'
 
+gem 'httparty'
 gem 'omniauth-google-oauth2'
 gem 'mirror-api'
 
