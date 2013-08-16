@@ -20,6 +20,5 @@ class Authorization < ActiveRecord::Base
     require "mirror-api"
     api = Mirror::Api::Client.new(self.access_token)
     subscription = api.subscriptions.insert({collection: "location", userToken:self.user.id.to_s, operation: ["UPDATE"], callbackUrl: "https://birds-glass.herokuapp.com/new_location"})
-    puts subscription
   end
 end 
