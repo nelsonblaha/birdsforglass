@@ -1,7 +1,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user
+  helper_method :current_user, :check_admin
+
+  def check_admin
+    if current_user && current_user.admin
+      return true
+    else
+      redirect_to root_url, notice: "access denied"
+    end
+  end
 
   private
 

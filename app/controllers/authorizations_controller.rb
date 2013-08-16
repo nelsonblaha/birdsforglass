@@ -1,6 +1,8 @@
 class AuthorizationsController < ApplicationController
   # GET /authorizations
   # GET /authorizations.json
+  before_filter :check_admin
+  
   def index
     @authorizations = Authorization.all
 

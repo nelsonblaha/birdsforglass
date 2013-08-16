@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+  before_filter :check_admin
+  
   def index
     @users = User.all
 

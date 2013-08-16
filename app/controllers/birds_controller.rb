@@ -1,6 +1,8 @@
 class BirdsController < ApplicationController
   # GET /birds
   # GET /birds.json
+  before_filter :check_admin
+  
   def index
     @birds = Bird.all
 
