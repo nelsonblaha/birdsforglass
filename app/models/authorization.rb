@@ -57,7 +57,7 @@ class Authorization < ActiveRecord::Base
 
     # add new bird cards
     birds.each do |bird|
-      image_url = Bird.where(com_name:bird['comName']).first_or_create.image_url
+      image_url = Bird.where(com_name:bird['comName']).first_or_create.set_and_return_image_url
       api.timeline.insert({html: "<article>\n  <figure>\n    <img src=\""+image_url+"\">\n  </figure>\n  <section>\n    <table class=\"text-small align-justify\"> \n      <tbody>\n        <tr>\n                    <td>"+bird['comName']+"</td>\n        </tr>\n        <tr>\n                    <td>"+bird['sciName']+"</td>\n        </tr>\n        <tr>\n                    <td>"+bird['howMany'].to_s+"</td>\n        </tr>\n      </tbody>\n    </table>\n  </section>\n</article>\n"})
     end
   end
