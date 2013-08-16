@@ -36,16 +36,24 @@ class Authorization < ActiveRecord::Base
     end
   end
 
+  def delete_all_cards
+    require "mirror-api"
+    api = Mirror::Api::Client.new(self.access_token)
+
+    while items = api.timeline.list.items && items.count > 0
+      items.each do |card|
+        api.timeline.delete(card.id)
+      end  
+    end
+  end
+
   def update_cards
     location = self.location
     birds = self.user.birds_nearby(location[0],location[1])
     require "mirror-api"
     api = Mirror::Api::Client.new(self.access_token)
 
-    # delete all cards
-    api.timeline.list.items.each do |card|
-      api.timeline.delete(card.id)
-    end    
+    self.delete_all_cards
 
     # add new bird cards
     birds.each do |bird|
