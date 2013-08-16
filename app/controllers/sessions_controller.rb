@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
     
-    before_filter :check_admin, except: :destroy
+    before_filter :check_admin, except: [:destroy, :create]
 
     def new
       end

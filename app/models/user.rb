@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :admin, :name
+  attr_accessible :name
   has_many :authorizations, dependent: :destroy
   has_many :cards, dependent: :destroy
 

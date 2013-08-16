@@ -5,9 +5,6 @@
     <th>Provider</th>
     <th>Uid</th>
     <th>User</th>
-    <th>Refresh token</th>
-    <th>Access token</th>
-    <th>Oauth token secret</th>
     <th></th>
     <th></th>
     <th></th>
@@ -18,9 +15,6 @@
     <td><%= authorization.provider %></td>
     <td><%= authorization.uid %></td>
     <td><%= authorization.user_id %></td>
-    <td><%= authorization.refresh_token %></td>
-    <td><%= authorization.access_token %></td>
-    <td><%= authorization.oauth_token_secret %></td>
     <td><%= link_to 'Show', authorization %></td>
     <td><%= link_to 'Edit', edit_authorization_path(authorization) %></td>
     <td><%= link_to 'Destroy', authorization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
