@@ -46,6 +46,8 @@ GEM
     figaro (0.6.3)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    google-search (1.0.3)
+      json
     hashie (2.0.5)
     hike (1.2.2)
     httparty (0.11.0)
@@ -158,6 +160,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   figaro
+  google-search
   httparty
   jquery-rails
   less-rails
