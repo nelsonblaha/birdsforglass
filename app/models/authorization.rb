@@ -49,17 +49,20 @@ class Authorization < ActiveRecord::Base
   end
 
   def update_cards
-    location = self.location
-    birds = self.user.birds_nearby(location[0],location[1])
-    require "mirror-api"
-    api = Mirror::Api::Client.new(self.access_token)
+    begin
+      location = self.location
+      birds = self.user.birds_nearby(location[0],location[1])
+      require "mirror-api"
+      api = Mirror::Api::Client.new(self.access_token)
 
-    self.delete_all_cards
+      self.delete_all_cards
 
-    # add new bird cards
-    birds.each do |bird|
-      image_url = Bird.where(com_name:bird['comName']).first_or_create.set_and_return_image_url
-      api.timeline.insert({bundleId: "birdsForGlass", html: "<article>\n  <figure>\n    <img src=\""+image_url+"\">\n  </figure>\n  <section>\n    <table class=\"text-small align-justify\"> \n      <tbody>\n        <tr>\n                    <td>"+bird['comName']+"</td>\n        </tr>\n        <tr>\n                    <td>"+bird['sciName']+"</td>\n        </tr>\n        <tr>\n                    <td>"+bird['howMany'].to_s+" sighted nearby.</td>\n        </tr>\n      </tbody>\n    </table>\n  </section>\n</article>\n"})
+      # add new bird cards
+      birds.each do |bird|
+        image_url = Bird.where(com_name:bird['comName']).first_or_create.set_and_return_image_url
+        api.timeline.insert({bundleId: "birdsForGlass", html: "<article>\n  <figure>\n    <img src=\""+image_url+"\">\n  </figure>\n  <section>\n    <table class=\"text-small align-justify\"> \n      <tbody>\n        <tr>\n                    <td>"+bird['comName']+"</td>\n        </tr>\n        <tr>\n                    <td>"+bird['sciName']+"</td>\n        </tr>\n        <tr>\n                    <td>"+bird['howMany'].to_s+" sighted nearby.</td>\n        </tr>\n      </tbody>\n    </table>\n  </section>\n</article>\n"})
+      end
+    rescue
     end
   end
 end 
