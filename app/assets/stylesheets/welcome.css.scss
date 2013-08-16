@@ -24,8 +24,8 @@ div#sample{
     padding:3%
   }
 }
-p a { 
-  color:black!important;
+p a, h4 a { 
+  color:rgb(51,51,51)!important;
   text-decoration:underline;
   &:hover{
     color:white!important;
