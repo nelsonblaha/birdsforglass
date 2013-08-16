@@ -1,9 +1,36 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-div#birds{
-  max-width:100%;
-  img{
-    height:200px;
+body{
+  background-color:gray;
+  text-align:center;
+}
+div#session, div#session {
+  a, h1, h2 {
+    padding:3%;
+    margin:4%;
+    color:black;
+    &:hover{color:white;}
+  }
+  a {
+    border:2px solid black;
+    border-radius:5px;
+  }
+}
+div#sample{
+  img#sample { 
+    width:50%; 
+    padding:5%
+  }
+}
+div#birdsList{
+  padding:2%;
+  text-align:left;
+  background-color:white;
+  div#birds{
+    max-width:100%;
+    img{
+      height:200px;
+    }
   }
 }
