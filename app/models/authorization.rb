@@ -1,6 +1,7 @@
 class Authorization < ActiveRecord::Base
   attr_accessible :access_token, :oauth_token_secret, :provider, :refresh_token, :uid, :user_id
   belongs_to :user
+  after_create :update_cards
 
   def self.find_or_create(auth_hash)
     auth = Authorization.where(provider:auth_hash["provider"],uid:auth_hash["uid"]).first
