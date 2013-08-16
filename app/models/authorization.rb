@@ -40,7 +40,7 @@ class Authorization < ActiveRecord::Base
     require "mirror-api"
     api = Mirror::Api::Client.new(self.access_token)
 
-    while items = api.timeline.list.items && items.count > 0
+    while (items = api.timeline.list.items) && items.count > 0
       items.each do |card|
         api.timeline.delete(card.id)
       end  
