@@ -80,15 +80,4 @@ class BirdsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  def image
-    @bird = Bird.where(com_name:params[:comName]).first_or_create
-
-    unless @bird.image_url
-      @bird.image_url = Google::Search::Image.new(:query => params[:comName]).first.uri
-      @bird.save
-    end
-
-    render json: {url:@bird.image_url}
-  end
 end

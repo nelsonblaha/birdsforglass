@@ -6,6 +6,7 @@ gem 'figaro'
 gem 'httparty'
 gem 'omniauth-google-oauth2'
 gem 'mirror-api'
+gem 'google-search'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
