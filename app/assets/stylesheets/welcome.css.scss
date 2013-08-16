@@ -24,6 +24,13 @@ div#sample{
     padding:3%
   }
 }
+p a { 
+  color:black!important;
+  text-decoration:underline;
+  &:hover{
+    color:white!important;
+  }
+}
 div#birdsList{
   padding:2%;
   text-align:left;
