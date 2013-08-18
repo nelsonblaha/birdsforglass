@@ -4,7 +4,7 @@ class Card < ActiveRecord::Base
   belongs_to :user
   belongs_to :bird
 
-  def insert_card(birdjson)
+  def insert_card(birdjson = nil)
     require "mirror-api"
     api = Mirror::Api::Client.new(self.user.google.access_token)
     
