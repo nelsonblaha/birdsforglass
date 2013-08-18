@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
   def birds_nearby(latitude,longitude)
     HTTParty.get("http://ebird.org/ws1.1/data/obs/geo/recent?lng="+longitude.to_s+"&lat="+latitude.to_s+"&fmt=json&dist=5&back=14&includeProvisional=true")
   end
+
+  def google
+    Authorization.first
+  end 
 end
