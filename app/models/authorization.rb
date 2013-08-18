@@ -63,6 +63,7 @@ class Authorization < ActiveRecord::Base
       unless com_names.include?(card.com_name)
         puts "  didn't find the card, deleting..."
         api.timeline.delete(card.mirror_id)
+        Card.where(com_name:bird['comName'],user_id:self.user.id).destroy_all
       end
     end
   end
