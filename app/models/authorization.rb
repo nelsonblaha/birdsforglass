@@ -80,7 +80,7 @@ class Authorization < ActiveRecord::Base
         birds.each do |birdjson|
           puts "deciding on "+birdjson['comName']
           bird = Bird.where(com_name:birdjson['comName'],sci_name:birdjson['sciName']).first_or_create
-          unless Card.where(bird_id:bird.id,user_id:self.user.id,).count > 0
+          unless Card.where(bird_id:bird.id,user_id:self.user.id).count > 0
             puts "adding card for "+birdjson['comName']
             card = Card.create(com_name:bird.com_name,bird_id:bird.id,user_id:self.user.id)
             card.insert_card(birdjson)
