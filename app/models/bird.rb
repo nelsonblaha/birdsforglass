@@ -1,5 +1,6 @@
 class Bird < ActiveRecord::Base
-  attr_accessible :com_name, :image_url
+  attr_accessible :com_name, :sci_name, :image_url
+  has_many :cards
 
   def set_and_return_image_url
     unless self.image_url
