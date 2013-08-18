@@ -69,7 +69,6 @@ class Authorization < ActiveRecord::Base
   end
 
   def update_cards
-    begin
       if location = self.location
         birds = self.user.birds_nearby(location[0],location[1])
         require "mirror-api"
@@ -88,7 +87,5 @@ class Authorization < ActiveRecord::Base
           end
         end
       end
-    rescue
-    end
   end
 end 
