@@ -8,6 +8,6 @@ class User < ActiveRecord::Base
   end
 
   def google
-    Authorization.first
+    self.authorizations.first
   end 
 end
