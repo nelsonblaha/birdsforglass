@@ -77,13 +77,13 @@ class Authorization < ActiveRecord::Base
         self.delete_missing_cards(birds)
 
         # add new bird cards
-        birds.each do |bird|
-          puts "deciding on "+bird['comName']
-          bird = Bird.where(com_name:bird['comName'],sci_name:bird['sciName']).first_or_create
+        birds.each do |birdjson|
+          puts "deciding on "+birdjson['comName']
+          bird = Bird.where(com_name:birdjson['comName'],sci_name:birdjson['sciName']).first_or_create
           unless Card.where(bird_id:bird.id,user_id:self.user.id,).count > 0
-            puts "adding card for "+bird['comName']
+            puts "adding card for "+birdjson['comName']
             card = Card.create(bird_id:bird.id,user_id:self.user.id)
-            card.insert_card(bird)
+            card.insert_card(birdjson)
           end
         end
       end
