@@ -56,9 +56,12 @@ class Authorization < ActiveRecord::Base
     require "mirror-api"
     api = Mirror::Api::Client.new(self.access_token)
 
+    com_names = birds.map { |bird| bird['comName']}
+
     self.user.cards.each do |card|
-      com_names = birds.map { |bird| bird['comName']}
+      puts "considering user's "+card.com_name+" card for deletion..."
       unless com_names.include?(card.com_name)
+        puts "  didn't find the card, deleting..."
         api.timeline.delete(card.mirror_id)
       end
     end
@@ -75,7 +78,9 @@ class Authorization < ActiveRecord::Base
 
         # add new bird cards
         birds.each do |bird|
-          unless Card.where(com_name:bird['comName']).count > 0
+          puts "deciding on "+bird['comName']
+          unless Card.where(com_name:bird['comName'],user_id:self.user.id).count > 0
+            puts "adding card for "+bird['comName']
             card = Card.create(com_name:bird['comName'],user_id:self.user.id)
             card.insert_card(bird)
           end
