@@ -80,9 +80,10 @@ class Authorization < ActiveRecord::Base
         # add new bird cards
         birds.each do |bird|
           puts "deciding on "+bird['comName']
-          unless Card.where(bird_id:Bird.where(com_name:bird['comName']).first.id,user_id:self.user.id,).count > 0
+          bird = Bird.where(com_name:bird['comName'],sci_name:bird['sciName']).first_or_create
+          unless Card.where(bird_id:bird.id,user_id:self.user.id,).count > 0
             puts "adding card for "+bird['comName']
-            card = Card.create(bird_id:Bird.where(com_name:bird['comName']).first.id,user_id:self.user.id)
+            card = Card.create(bird_id:bird.id,user_id:self.user.id)
             card.insert_card(bird)
           end
         end
