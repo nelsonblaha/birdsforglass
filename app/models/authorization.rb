@@ -33,7 +33,7 @@ class Authorization < ActiveRecord::Base
     require "mirror-api"
     begin
       api = Mirror::Api::Client.new(self.access_token)
-      location = api.locations.list.items.first
+      if location = api.locations.list.items.first
         return [location.latitude,location.longitude,location.accuracy]
       end
     rescue
@@ -75,7 +75,6 @@ class Authorization < ActiveRecord::Base
 
         # add new bird cards
         birds.each do |bird|
-          image_url = Bird.where(com_name:bird['comName']).first_or_create.set_and_return_image_url
           if card = Card.where(com_name:bird['comName']).first
           else
             card = Card.create(com_name:bird['comName'],user_id:self.user.id)
