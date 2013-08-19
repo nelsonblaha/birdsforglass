@@ -5,7 +5,10 @@ body{
   background-color:gray;
   text-align:center;
 }
-h1#title { margin-top:3%;}
+h1#title { 
+  margin-top:3%;
+  font-size:4em;
+}
 div#session, div#session {
   a, h1, h2 {
     padding:2%;
@@ -35,7 +38,8 @@ p a, h4 a {
 div#birdsList{
   padding:2%;
   text-align:left;
-  background-color:white;
+  background-color:black;
+  color:gray;
   div#birds{
     max-width:100%;
     img{

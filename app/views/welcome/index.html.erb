@@ -1,15 +1,14 @@
 <h1 id="title">Get to know your neighbors.</h1>
+<p>Powered by Cornell's <%= link_to 'eBird', 'http://www.ebird.org' %> Ornithology API</p>
 <div id="sample">
   <%= image_tag 'sample.png', id:'sample' %>
   <h4>Updated live in <%= link_to "Glass™", "http://www.google.com/glass/start/" %> wherever you go.</h4>
   <p>Created by <%= link_to '@blaha', 'https://twitter.com/blaha' %> and <%= link_to "you", "http://www.github.com/nelsonblaha/birdsforglass" %>. |  Glass™ is a trademark of Google Inc.</p>
-  <p>We're running at 100% capacity... please be patient if you don't see cards until the next day.</p>
 </div>
 
 <%= render 'layouts/session' %>
 
 <div id="birdsList">
-  <h2>BIRDS AROUND HERE RECENTLY</h2>
-  <h3>(birds shown on Glass)</h3>
-  <div id="birds"></div>
+  <h2>Birds you'd see right now:</h2>
+  <div id="birds">You're not near any bird sightings.</div>
 </div>
