@@ -1,5 +1,5 @@
 == Birds for Glass
 
-http://www.birds-glass.herokuapp.com
+http://birds-glass.herokuapp.com
 
 Please contribute. I hope one day for this app to accept users' photos for interpretation by expert birders back into Cornell's eBird database.
